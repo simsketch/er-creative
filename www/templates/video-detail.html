@@ -1,0 +1,51 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+<ion-view title="{{video.SpotTitle}}">
+  <ion-content has-header="true" padding="true">
+  {{video.SpotTitle}} - {{video.YearShot}}<br />
+  {{video.BrandName}} - {{video.ProductName}}<br/>
+  <a href="http://app.extremereach.com/Media/Stream/{{video.MediaObjectId}}?profile=6770839A-128E-4C84-812B-3F562CFBFC4B"><img ng-src="{{video.KeyFrameThumbnailUrl}}" style="width:100%;" /></a><br/>
+  <video ng-src="http://app.extremereach.com/Media/Stream/{{video.MediaObjectId}}?profile=6770839A-128E-4C84-812B-3F562CFBFC4B" controls>
+  Your browser does not support the video tag.
+</video>
+  <a href="http://app.extremereach.com/Media/Stream/{{video.MediaObjectId}}?profile=6770839A-128E-4C84-812B-3F562CFBFC4B">Play Video</a> | <a ng-click="downloadSpot('{{video.MediaObjectId}}');">Download</a><br/><br/>
+  {{video.ProductionCompanyName}}<br/>
+  {{video.DirectorFirstName}} {{video.DirectorLastName}}<br/>
+  {{video.AgencyName}}<br/><br/>
+  <a href="http://crdt.tv/{{video.ShortLinkKey}}">http://crdt.tv/{{video.ShortLinkKey}}</a><br/><br/>
+  {{video.CreateDateTime | date : format : timezone}}<br/>
+  {{video.Track}}<br/><br/>
+  <img ng-src="{{video.Thumbnail_1_Url}}" style="width:32.5%;" />
+  <img ng-src="{{video.Thumbnail_2_Url}}" style="width:32.5%;" />
+  <img ng-src="{{video.Thumbnail_3_Url}}" style="width:32.5%;" />
+
+    <script src="http://devapp.extremereach.com/Content/js/jwplayer6/jwplayer.js" type="text/javascript"></script>
+    <script language="javascript" type="text/javascript">
+    jwplayer.key = "A2w4WaC7NXI2iatlb9rmd7+45GIZ3ib1AyL5jwZSVdk=";
+    </script>
+    <script type="text/javascript">
+  jwplayer('previewPlayer').setup({
+                file: 'http://app.extremereach.com/Media/Stream/{{video.MediaObjectId}}?profile=6770839A-128E-4C84-812B-3F562CFBFC4B',
+                type: 'mp4',
+                height: 'auto',
+                image: '{{video.KeyFrameThumbnailUrl}}',
+                skin: 'vapor',
+                width: '100%',
+                bufferlength: 3,
+                primary: 'html5',
+                autostart: true,
+                aspectratio: '16:9',
+                events: {
+                    onError: function() { $('#previewPlayer').html('<img src="{{video.Thumbnail_1_Url}}" style="width:100%;height:100%;" />'); },
+                    onSetupError: function() { $('#previewPlayer').html('<img src="{{video.Thumbnail_1_Url}}" style="width:100%;height:100%;" />'); }
+                }
+            });
+
+    </script>
+  </ion-content>
+</ion-view>
+
