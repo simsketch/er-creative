@@ -6,12 +6,20 @@
 -->
 <ion-view title="{{video.SpotTitle}}">
   <ion-content has-header="true" padding="true">
-  {{video.SpotTitle}} - {{video.YearShot}}<br />
-  {{video.BrandName}} - {{video.ProductName}}<br/>
+  <div class="list card">
+      <div class="item item-divider">{{video.SpotTitle}}</div>
+      <div class="item item-body">
+        <div>
+          Brand: {{video.BrandName}}<br>
+          Product: {{video.ProductName}}<br>
+          Year: {{video.YearShot}}
+        </div>
+      </div>
+    </div>
 
 <div ng-controller="VideoDetailCtrl as controller">
     <videogular vg-theme="controller.config.theme">
-      <vg-media vg-src="controller.config.sources" vg-tracks="controller.config.tracks">
+      <vg-media vg-src="controller.config.sources" vg-tracks="controller.config.tracks" vg-chromecast="2A296BEE">
       </vg-media>
  
       <vg-controls>

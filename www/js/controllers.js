@@ -39,15 +39,15 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('VideoDetailCtrl', function($scope, $stateParams, Videos) {
+.controller('VideoDetailCtrl', function($sce, $scope, $stateParams, Videos) {
   $scope.video = Videos.get($stateParams.videoId);
   $scope.mediaObjectId = Videos.mediaId($stateParams.videoId);
   $scope.thumb = Videos.thumb($stateParams.videoId);
   this.config = {
 				sources: [
-					{src: "http://app.extremereach.com/Media/Stream/"+$scope.mediaObjectId+"?profile=6770839A-128E-4C84-812B-3F562CFBFC4B", type: "video/mp4"}
+					{src: $sce.trustAsResourceUrl("http://app.extremereach.com/Media/Stream/"+$scope.mediaObjectId+"?profile=6770839A-128E-4C84-812B-3F562CFBFC4B"), type: "video/mp4"}
 				],
-				theme: "lib/videogular-themes-default/videogular.css",
+				theme: "/lib/videogular-themes-default/videogular.css",
 				plugins: {
 					poster: $scope.thumb
 				}
