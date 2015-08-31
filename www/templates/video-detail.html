@@ -8,10 +8,31 @@
   <ion-content has-header="true" padding="true">
   {{video.SpotTitle}} - {{video.YearShot}}<br />
   {{video.BrandName}} - {{video.ProductName}}<br/>
-  <a href="http://app.extremereach.com/Media/Stream/{{video.MediaObjectId}}?profile=6770839A-128E-4C84-812B-3F562CFBFC4B"><img ng-src="{{video.KeyFrameThumbnailUrl}}" style="width:100%;" /></a><br/>
-  <video ng-src="http://app.extremereach.com/Media/Stream/{{video.MediaObjectId}}?profile=6770839A-128E-4C84-812B-3F562CFBFC4B" controls>
-  Your browser does not support the video tag.
-</video>
+
+<div ng-controller="VideoDetailCtrl as controller">
+    <videogular vg-theme="controller.config.theme">
+      <vg-media vg-src="controller.config.sources" vg-tracks="controller.config.tracks">
+      </vg-media>
+ 
+      <vg-controls>
+        <vg-play-pause-button></vg-play-pause-button>
+        <vg-time-display>{{ currentTime | date:'mm:ss' }}</vg-time-display>
+        <vg-scrub-bar>
+          <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+        </vg-scrub-bar>
+        <vg-time-display>{{ timeLeft | date:'mm:ss' }}</vg-time-display>
+        <vg-volume>
+          <vg-mute-button></vg-mute-button>
+          <vg-volume-bar></vg-volume-bar>
+        </vg-volume>
+        <vg-fullscreen-button></vg-fullscreen-button>
+      </vg-controls>
+ 
+      <vg-overlay-play></vg-overlay-play>
+      <vg-poster vg-url='controller.config.plugins.poster'></vg-poster>
+    </videogular>
+    </div>
+
   <a href="http://app.extremereach.com/Media/Stream/{{video.MediaObjectId}}?profile=6770839A-128E-4C84-812B-3F562CFBFC4B">Play Video</a> | <a ng-click="downloadSpot('{{video.MediaObjectId}}');">Download</a><br/><br/>
   {{video.ProductionCompanyName}}<br/>
   {{video.DirectorFirstName}} {{video.DirectorLastName}}<br/>

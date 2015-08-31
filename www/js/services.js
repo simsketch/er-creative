@@ -916,6 +916,12 @@ angular.module('starter.services', [])
     all: function() {
       return videos;
     },
+    mediaId: function(videoId) {
+      return videos[videoId].MediaObjectId;
+    },
+    thumb: function(videoId) {
+      return videos[videoId].KeyFrameThumbnailUrl;
+    },
     remove: function(video) {
       videos.splice(videos.indexOf(video), 1);
     },
